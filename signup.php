@@ -5,6 +5,7 @@
 		<?php include 'partials/nav_bar.php' ?>
 		<br>
 		<div class="container">
+			<div class="well">
 			<form action="db/add_customer.php" method="post" onsubmit="return validate(this);">
 			  <fieldset>
 			  	<legend>Sign Up</legend>
@@ -45,10 +46,11 @@
 			  	<div class="form-group">
 			  		<input class="form-control" type="text" name="phone" placeholder="Phone Number..." />
 			  	</div>
-			  	<button class="btn btn-success" type="submit">Submit</button>
-  				<button class="btn btn-danger" type="reset">Reset</button>
+			  	<button class="btn btn-lg btn-success" type="submit">Submit</button>
+  				<button class="btn btn-lg btn-danger" type="reset">Reset</button>
 			  </fieldset>
 			</form>
+			</div>
 		</div>
 		<script>
 			function validate(userForm) {

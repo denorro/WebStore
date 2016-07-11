@@ -1,10 +1,15 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+?>
+<!DOCTYPE html>
 <html>
-<head></head>
-<body>
-	
 
 <?php
-    
+    include 'partials/scripts_styles.php';
+	echo "<body>";
+	include 'partials/nav_bar.php';
 	$connection = mysqli_connect("localhost:3306", "root", "admin", "shopping")
 				  or die ( "Please check connection!");
 	
@@ -13,23 +18,24 @@
 				" and password like (PASSWORD('". $_POST['password'] ."'))";
 				
 	$result = mysqli_query($connection, $query) or die(mysqli_error($connection));	
-	
+	extract($result);
 	if(mysqli_num_rows($result) == 1){
-		while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-			extract($row);
-			echo "Welcome " . $complete_name . "to Denorro's Store! <br>";
-		}
+		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+		extract($row);
+		$_SESSION['loggedin'] = true;
+    	$_SESSION['name'] = $complete_name;
+		$_SESSION['msg_present'] = false;
+		$_SESSION['msg'] = null;
+		$_SESSION['msg_good?'] = true;
+		$_SESSION['products_in_cart'] = array();
+		header("Location: ../user.php");
 	}
 	else{
-		?>
-		<p>Invalid email address and/or password<br>
-			Not Registered?
-			<a href="../signup.php">Click Here</a> to register.<br><br><br>
-			Want to try again?<br>
-			<a href="../signin.php">Click Here</a> to try login again.<br>
-		</p>
-		<?php
-	}
-		?>		
+		$_SESSION['msg_present'] = true;
+		$_SESSION['msg_good?'] = false;
+		$_SESSION['msg'] = "Access Denied! Check username/password!";
+		header("Location: ../signin.php");
+	}	
+?>
 </body>
 </html>
