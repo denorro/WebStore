@@ -26,13 +26,13 @@ if (session_status() == PHP_SESSION_NONE) {
     	$_SESSION['name'] = $complete_name;
 		$_SESSION['msg_present'] = false;
 		$_SESSION['msg'] = null;
-		$_SESSION['msg_good?'] = true;
+		$_SESSION['msg_good'] = true;
 		$_SESSION['products_in_cart'] = array();
 		header("Location: ../user.php");
 	}
 	else{
 		$_SESSION['msg_present'] = true;
-		$_SESSION['msg_good?'] = false;
+		$_SESSION['msg_good'] = false;
 		$_SESSION['msg'] = "Access Denied! Check username/password!";
 		header("Location: ../signin.php");
 	}	

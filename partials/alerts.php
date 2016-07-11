@@ -6,7 +6,7 @@
     if (isset($_SESSION['msg_present']) && $_SESSION['msg_present'] == true) {
     	if (isset($_SESSION['msg_good']) && $_SESSION['msg_good'] == true){
     		$msg = $_SESSION['msg'];
-    		echo "<div class=\"alert alert-success\" role=\"alert\"> $msg </div>";
+    		echo "<div class=\"alert alert-success\" role=\"alert\"><h4> $msg </h4></div>";
     	}else{
     		$msg = $_SESSION['msg'];
     		echo "<div class=\"alert alert-danger\" role=\"alert\"><h4> $msg </h4></div>";
